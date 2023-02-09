@@ -2,7 +2,6 @@ import './updateEmployee.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
 const UpdateEmployee = () => {
     const [employeeDetails, setEmployeeDetails] = useState({
         name: '',
@@ -12,10 +11,8 @@ const UpdateEmployee = () => {
         dob: '',
         profession: ''
     });
-
     const navigate = useNavigate();
     const params = useParams();
-
     useEffect(() => {
         const empID = params.empID.toString();
         axios.get(`${process.env.REACT_APP_BASE_URL}/employees/${empID}`).then(response => {
@@ -25,9 +22,6 @@ const UpdateEmployee = () => {
             console.log('Error: ', err);
         })
     }, [params.empID]);
-
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const empID = params.empID.toString();
@@ -50,14 +44,11 @@ const UpdateEmployee = () => {
             console.log('Error while adding a new employee.')
         }
     }
-
     const handleForm = (value) => {
         return setEmployeeDetails(employee => {
             return {...employee, ...value};
         })
     }
-
-
 
     return (
         <div>
